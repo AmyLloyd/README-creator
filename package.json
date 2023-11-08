@@ -2,7 +2,9 @@
   "name": "readme-creator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
+  "node": ">=16",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
