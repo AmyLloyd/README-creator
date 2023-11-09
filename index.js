@@ -1,25 +1,63 @@
 // // TODO: Include packages needed for this application
-// // const fs = require('fs');
 import fs from 'node:fs';
+//Import needed to use new version of inquirer in a native ESM environment
 import inquirer from 'inquirer';
+
+//connect the generateMarkdown.js file
+import generateMarkdown from './utils/generateMarkdown.js';
+console.log(generateMarkdown.js);
+
+//questions array
+const questions = [
+    "What is your project title?", 
+    "Write a short description explaining the what, why and how of your project",
+    "What are the steps required to install your project?",
+    "Would you like a table of contents?",
+    "Add a screenshot file",
+    "Give some instructions for use.",
+    "List your collaborators and sources of code to credit them.",
+    "Which license are you using?",
+];
+//destructure questions array so they can be easily inserted and used
+const [title, description, steps, contents, screenshot, instrustions, credits, license] = questions;
 
 inquirer
     .prompt([
         {
         type: "input", 
-        message: "What is your name?",
+        message: title,
         name:"title",
         },
         {
-        type: "checkbox",
-        message: "What sections would you like in the README file?",
-        name: "sections",
+        type: "input",
+        message: description,
+        name: "description",
         choices: ["title", "description", "instructions", "table of contents"],
         },
+        {
+            type: "input",
+            message: steps,
+            name: "steps",
+        },
+        {type: "input",
+        message: contents,
+        name:"contents"
+        },
+        {
+        type: "input",
+        message: screenshot,
+        name: "screenshot",
+        },
     ])
-    .then((data) => 
-        console.log(data, 'data'))
+    //add promise writing data to the README file
+    .then((data) => {
+        const htmlPageContent = generateHTML(data);
 
+        fs.writeFile('myREADME.md', htmlPageContent, (err) =>
+        err ? console.log(err) 
+        : console.log("Success!")
+        );
+    })
     .catch((error) => {
         console.log("checking for errors");
         if(error.isTtyError) {
@@ -27,19 +65,11 @@ inquirer
         } else {
             //Something else went wrong
         } 
-});
+     });
+
 
 // // TODO: Create an array of questions for user input
-// const questions = [
-//     "What is your project title?", 
-//     "Write a short description explaining the what, why and how of your project",
-//     "What are the steps required to install your project?",
-//     "What are your strengths as a developer?",
-//     "Would you like a table of contents?",
-//     "Add a screenshot file",
-//     "Give some instructions for use.",
-//     "List your collaborators and sources of code.",
-// ];
+
 
 // // for (const question of questions) {
 // //     console.log(question);
