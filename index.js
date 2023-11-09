@@ -3,6 +3,10 @@ import fs from 'node:fs';
 //Import needed to use new version of inquirer in a native ESM environment
 import inquirer from 'inquirer';
 
+//connect the generateMarkdown.js file
+import generateMarkdown from './utils/generateMarkdown.js';
+console.log(generateMarkdown.js);
+
 //questions array
 const questions = [
     "What is your project title?", 
@@ -16,7 +20,6 @@ const questions = [
 ];
 //destructure questions array so they can be easily inserted and used
 const [title, description, steps, contents, screenshot, instrustions, credits, license] = questions;
-
 
 inquirer
     .prompt([
@@ -48,8 +51,9 @@ inquirer
     ])
     //add promise writing data to the README file
     .then((data) => {
-        let userResponse = JSON.stringify(data);
-        fs.writeFile('myREADME.md', userResponse + '\n', (err) =>
+        const htmlPageContent = generateHTML(data);
+
+        fs.writeFile('myREADME.md', htmlPageContent, (err) =>
         err ? console.log(err) 
         : console.log("Success!")
         );
@@ -61,9 +65,6 @@ inquirer
         } else {
             //Something else went wrong
         } 
-
-
-
      });
 
 
