@@ -6,7 +6,8 @@ import inquirer from 'inquirer';
 //connect the generateMarkdown.js file
 import {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown} from "./utils/generateMarkdown.js"
 
-console.log(renderLicenseBadge);
+// console.log(generateMarkdown);
+// generateMarkdown();
 
 
 
@@ -24,7 +25,8 @@ const questions = [
 //destructure questions array so they can be easily inserted and used
 const [qTitle, qDescription, qSteps, qContents, qScreenshot, qInstrustions, qCredits, qLicense] = questions;
 
-inquirer
+let promptUser = () => {
+  inquirer
     .prompt([
         {
         type: "input", 
@@ -38,11 +40,12 @@ inquirer
         choices: ["title", "description", "instructions", "table of contents"],
         },
         {
-            type: "input",
-            message: qSteps,
-            name: "steps",
+        type: "input",
+        message: qSteps,
+        name: "steps",
         },
-        {type: "input",
+        {
+        type: "input",
         message: qContents,
         name:"contents"
         },
@@ -54,9 +57,11 @@ inquirer
     ])
     //add promise writing data to the README file
     .then((data) => {
-        const htmlPageContent = generateHTML(data);
+        console.log(data.title);
+        const readmeContent = generateMarkdown(data);
 
-        fs.writeFile('myREADME.md', htmlPageContent, (err) =>
+
+        fs.writeFile('myREADME.md', readmeContent, (err) =>
         err ? console.log(err) 
         : console.log("Success!")
         );
@@ -66,9 +71,12 @@ inquirer
         if(error.isTtyError) {
             //Prompt couldn't be rendered in the current environment
         } else {
+            console.log("something else went wrong");
             //Something else went wrong
         } 
      });
+}
+
 
 
 // // TODO: Create an array of questions for user input
@@ -96,6 +104,9 @@ inquirer
 
 
 // // Function call to initialize app
-// init();
 
-// inquirer.prompt();
+const init = () => {
+    promptUser()
+};
+
+init();
