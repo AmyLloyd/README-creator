@@ -3,9 +3,11 @@
 //Credit: https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba 
 function renderLicenseBadge(license) {
   if (!license) {
+    console.log("license");
     return "";
   } else {
     if (license === MIT) {
+      console.log("MIT");
       
     }
      
@@ -22,10 +24,13 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
+// export module wasn't working so exporting individual functions this way
 function generateMarkdown(data) {
-  return `# ${data.title}
-
-`;
+  return `# ${data.title}`;
 }
 
-module.exports = generateMarkdown;
+
+
+
+export {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown};
+//module.exports = generateMarkdown;
