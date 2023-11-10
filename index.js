@@ -4,8 +4,12 @@ import fs from 'node:fs';
 import inquirer from 'inquirer';
 
 //connect the generateMarkdown.js file
-import generateMarkdown from './utils/generateMarkdown.js';
-console.log(generateMarkdown.js);
+import {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown} from "./utils/generateMarkdown.js"
+
+// console.log(generateMarkdown);
+// generateMarkdown();
+
+
 
 //questions array
 const questions = [
@@ -19,41 +23,45 @@ const questions = [
     "Which license are you using?",
 ];
 //destructure questions array so they can be easily inserted and used
-const [title, description, steps, contents, screenshot, instrustions, credits, license] = questions;
+const [qTitle, qDescription, qSteps, qContents, qScreenshot, qInstrustions, qCredits, qLicense] = questions;
 
-inquirer
+let promptUser = () => {
+  inquirer
     .prompt([
         {
         type: "input", 
-        message: title,
+        message: qTitle,
         name:"title",
         },
         {
         type: "input",
-        message: description,
+        message: qDescription,
         name: "description",
         choices: ["title", "description", "instructions", "table of contents"],
         },
         {
-            type: "input",
-            message: steps,
-            name: "steps",
+        type: "input",
+        message: qSteps,
+        name: "steps",
         },
-        {type: "input",
-        message: contents,
+        {
+        type: "input",
+        message: qContents,
         name:"contents"
         },
         {
         type: "input",
-        message: screenshot,
+        message: qScreenshot,
         name: "screenshot",
         },
     ])
     //add promise writing data to the README file
     .then((data) => {
-        const htmlPageContent = generateHTML(data);
+        console.log(data.title);
+        const readmeContent = generateMarkdown(data);
 
-        fs.writeFile('myREADME.md', htmlPageContent, (err) =>
+
+        fs.writeFile('myREADME.md', readmeContent, (err) =>
         err ? console.log(err) 
         : console.log("Success!")
         );
@@ -63,9 +71,12 @@ inquirer
         if(error.isTtyError) {
             //Prompt couldn't be rendered in the current environment
         } else {
+            console.log("something else went wrong");
             //Something else went wrong
         } 
      });
+}
+
 
 
 // // TODO: Create an array of questions for user input
@@ -93,6 +104,9 @@ inquirer
 
 
 // // Function call to initialize app
-// init();
 
-// inquirer.prompt();
+const init = () => {
+    promptUser()
+};
+
+init();

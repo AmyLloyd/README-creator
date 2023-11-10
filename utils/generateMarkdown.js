@@ -3,9 +3,11 @@
 //Credit: https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba 
 function renderLicenseBadge(license) {
   if (!license) {
+    console.log("license");
     return "";
   } else {
     if (license === MIT) {
+      console.log("MIT");
       
     }
      
@@ -23,9 +25,46 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+    return `# ${data.title} 
 
-`;
-}
+    ## Description
 
-module.exports = generateMarkdown;
+    ${data.description}
+
+    ## Table of Contents
+
+    ${data.contents}
+
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Credits](#credits)
+    - [License](#license)
+
+    ## Installation
+
+    ${data.steps}
+
+    ## Usage
+
+    Provide instructions and examples for use. Include screenshots as needed.
+    ${data.screenshot}
+
+    ## Credits
+
+
+    ## License
+
+    ---
+
+
+    ## Features
+
+    ## How to Contribute
+
+    ## Tests`;
+  };
+
+
+
+
+export {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown};
