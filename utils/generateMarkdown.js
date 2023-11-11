@@ -7,11 +7,8 @@ function renderLicenseBadge(license) {
     return "";
   } else {
     if (license === MIT) {
-      console.log("MIT");
-      
-    }
-     
-
+      console.log("MIT");     
+    }   
   }
 }
 
@@ -27,44 +24,57 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
     return `# ${data.title} 
 
-    ## Description
+## Description
 
-    ${data.description}
+${data.description}
 
-    ## Table of Contents
+## Table of Contents
 
-    ${data.contents}
+${data.contents}
 
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
-    ## Installation
+## Installation
 
-    ${data.steps}
+${data.steps}
 
-    ## Usage
+## Usage
 
-    Provide instructions and examples for use. Include screenshots as needed.
-    ${data.screenshot}
+Provide instructions and examples for use. Include screenshots as needed.
+${data.screenshot}
 
-    ## Credits
-
-
-    ## License
-
-    ---
+## Credits
 
 
-    ## Features
+## License
 
-    ## How to Contribute
+---
 
-    ## Tests`;
+
+## Features
+
+## How to Contribute
+
+## Tests`;
   };
 
-
+  //Unfinished table of contents
+// function includesTableOfContents (data) {
+//   while (data) {
+//     const writeContents = () => (value)
+//       let contentsTextInput = "[${" + value + "}]" + "(#${" + value + "})  ";
+//       let contentsText = [];
+//       contentsText.push(contentsTextInput);
+      
+      
+//     data.contentsIncludes.forEach(writeContents);
+//     const contentTable = 
+//   }
+//   return `
+// };
 
 
 export {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown};

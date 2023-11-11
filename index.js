@@ -51,13 +51,14 @@ let promptUser = () => {
         name:"contents",
         default: true,
         },
-        {
-        type: "checkbox",
-        message: "Which sections would you like to include in the Table of Contents?",
-        choices: ["Installation", "Usage", "Credits", "License"],
-        name: "contentsIncludes",
-        when: (data) => data.contents === true
-        },
+//Trying to customise table fo contents through looping through the array
+        // {
+        // type: "checkbox",
+        // message: "Which sections would you like to include in the Table of Contents?",
+        // choices: ["Installation", "Usage", "Credits", "License"],
+        // name: "contentsIncludes",
+        // when: (data) => data.contents === true
+        // },
         {
         type: "input",
         message: qScreenshot,
@@ -84,7 +85,6 @@ let promptUser = () => {
     //add promise writing data to the README file
     .then((data) => {
         const readmeContent = generateMarkdown(data);
-        
         fs.writeFile('myREADME.md', readmeContent, (err) =>
         err ? console.log(err) 
         : console.log("Success!")
@@ -130,7 +130,8 @@ let promptUser = () => {
 // // Function call to initialize app
 
 const init = () => {
-    promptUser()
+    promptUser();
+
 };
 
 init();
