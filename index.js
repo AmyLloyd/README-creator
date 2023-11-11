@@ -23,7 +23,9 @@ const questions = [
     "Which license are you using?",
 ];
 //destructure questions array so they can be easily inserted and used
-const [qTitle, qDescription, qSteps, qContents, qScreenshot, qInstrustions, qCredits, qLicense] = questions;
+const [qTitle, qDescription, qSteps, qContents, qScreenshot, qInstructions, qCredits, qLicense] = questions;
+
+const licenseChoices = ["Apache License 2.0", "MIT license", "GNU General Public License v3.0", "Creative Commons Zero v1.0", "Mozilla Public License 2.0"];
 
 let promptUser = () => {
   inquirer
@@ -37,7 +39,6 @@ let promptUser = () => {
         type: "input",
         message: qDescription,
         name: "description",
-        choices: ["title", "description", "instructions", "table of contents"],
         },
         {
         type: "input",
@@ -45,22 +46,45 @@ let promptUser = () => {
         name: "steps",
         },
         {
-        type: "input",
+        type: "confirm",
         message: qContents,
-        name:"contents"
+        name:"contents",
+        default: true,
+        },
+        {
+        type: "checkbox",
+        message: "Which sections would you like to include in the Table of Contents?",
+        choices: ["Installation", "Usage", "Credits", "License"],
+        name: "contentsIncludes",
+        when: (data) => data.contents === true
         },
         {
         type: "input",
         message: qScreenshot,
         name: "screenshot",
         },
+        {
+        type: "input",
+        message: qInstructions,
+        name: "instructions",
+        },
+        {
+        type: "input",
+        message:qCredits,
+        name: "credits",
+        },
+        {
+        type: "list",
+        message: qLicense,
+        name: "license",
+        choices: licenseChoices,
+        default: licenseChoices[1],
+        },
     ])
     //add promise writing data to the README file
     .then((data) => {
-        console.log(data.title);
         const readmeContent = generateMarkdown(data);
-
-
+        
         fs.writeFile('myREADME.md', readmeContent, (err) =>
         err ? console.log(err) 
         : console.log("Success!")
