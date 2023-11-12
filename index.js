@@ -4,11 +4,37 @@ import fs from 'node:fs';
 import inquirer from 'inquirer';
 
 //connect the generateMarkdown.js file
-import {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown} from "./utils/generateMarkdown.js"
+import {generateMarkdown} from "./utils/generateMarkdown.js"
 
-// console.log(generateMarkdown);
-// generateMarkdown();
+//license constructor function
+function License(name, badge, link) {    
+    this.name = name;
+    this.badge = badge;
+    this.link = link;
+    this.key = "";
+    this.value = "";
+};
 
+License.prototype.renderLicenseSection = function () {
+    return `${this.name} is the license`;
+};
+
+
+const m = new License(
+    "mit license",
+    "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+    "https://choosealicense.com/licenses/mit/",
+    "m",
+    "MIT license",
+);
+
+const a = new License(
+    "Apache license 2.0", 
+    "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)",
+    "https://choosealicense.com/licenses/apache-2.0/",
+    "a",
+    "Apache license 2.0",
+);
 
 
 //questions array
@@ -26,10 +52,12 @@ const questions = [
     "Paste code snippets of tests for your project.",
     "Include some frequently asked questions and answers for your readers using links to other references."
 ];
+
 //destructure questions array so they can be easily inserted and used
 const [qTitle, qDescription, qContents,  qSteps, qInstructions, qScreenshot,  qCredits, qLicense, qFeatures, qContribute, qTests, qQuestions,] = questions;
 
-const licenseChoices = ["Apache License 2.0", "MIT license", "GNU General Public License v3.0", "Creative Commons Zero v1.0", "Mozilla Public License 2.0"];
+const licenseChoices = [{key: "a", value: "Apache license 2.0", name: "Apache license"}, {key: "m", value: "MIT license", value: "MIT license"}];
+// , "GNU General Public License v3.0", "Creative Commons Zero v1.0", "Mozilla Public License 2.0"];
 
 let promptUser = () => {
   inquirer
@@ -79,11 +107,12 @@ let promptUser = () => {
         name: "credits",
         },
         {
-        type: "list",
+        type: "expand",
         message: qLicense,
         name: "license",
         choices: licenseChoices,
         default: licenseChoices[1],
+
         },
         {
         type: "features",
@@ -105,14 +134,17 @@ let promptUser = () => {
         message: qQuestions,
         name: "questions",        
         }
+
     ])
     //add promise writing data to the README file
     .then((data) => {
         const readmeContent = generateMarkdown(data);
-        fs.writeFile('myREADME.md', readmeContent, (err) =>
-        err ? console.log(err) 
-        : console.log("Success!")
-        );
+        fs.writeFile('myREADME.md', readmeContent, (err) => err ? console.log(err) : console.log('Success'));
+        if (data.license === "MIT license") 
+        {
+        const licenseContent = m.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        }
     })
     .catch((error) => {
         console.log("checking for errors");
@@ -125,35 +157,21 @@ let promptUser = () => {
      });
 }
 
+// function createFileName(data) {
+//     const fileName = `${data.title}-README.md`
+// }
 
-
-// // TODO: Create an array of questions for user input
-
-
-// // for (const question of questions) {
-// //     console.log(question);
-// // }
-
-// //Code tutorial from https://au.video.search.yahoo.com/search/video?ei=UTF-8&p=example+of+inquirer+javascript&type=E210US0G0#id=1&vid=b0bf788b697d81db8526ede260db27a4&action=view
-// // TODO: Create a function to write README file
+// TODO: Create a function to write README file
 // function writeToFile(fileName, data) {
-//     data = data.JSON.stringify(data, null, "\t"), (err) =>
-//     err ? console.log(err) : console.log("Success!")
-//     fileName = "README.md";
+//     fs.writeFile(fileName, generateMarkdown(), (err) =>
+//     err ? console.log(err) 
+//     : console.log("Success!")
+// )};
 
-// };
-// //refer to documentation https://www.npmjs.com/package/inquirer#inquirercreatepromptmodule---prompt-function
-// // TODO: Create a function to initialize app
-// function init() {
-   
-// };
-
-
-
-
-// // Function call to initialize app
+// Function call to initialize app
 
 const init = () => {
+  
     promptUser();
 
 };
