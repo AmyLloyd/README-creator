@@ -1,8 +1,8 @@
-# g 
+# justy 
 
 ## Description
 
-g
+k
 
 ## Table of Contents
 
@@ -15,23 +15,27 @@ false
 
 ## Installation
 
-g
+jkl
 
 ## Usage
 
 Provide instructions and examples for use. Include screenshots as needed.
-g
+jkl
+jkl
 
 ## Credits
-
-
-## License
-
----
-
+jkl
 
 ## Features
+m
 
-## How to Contribute
+## Contributing
+m
 
-## Tests
+##Tests
+jkl
+
+##Frequently Asked Questions
+jkl
+
+mit license is the license
