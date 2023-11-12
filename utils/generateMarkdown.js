@@ -44,22 +44,33 @@ ${data.steps}
 ## Usage
 
 Provide instructions and examples for use. Include screenshots as needed.
+${data.instructions}
 ${data.screenshot}
 
 ## Credits
-
+${data.credits}
 
 ## License
-
+${data.license}
 ---
 
 
 ## Features
+${data.features}
 
-## How to Contribute
+## Contributing
+${data.contribute}
 
-## Tests`;
-  };
+##Tests
+${data.tests}
+
+##Frequently Asked Questions
+${data.questions}
+
+`
+;
+
+};
 
   //Unfinished table of contents
 // function includesTableOfContents (data) {

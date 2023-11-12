@@ -14,16 +14,20 @@ import {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMar
 //questions array
 const questions = [
     "What is your project title?", 
-    "Write a short description explaining the what, why and how of your project",
-    "What are the steps required to install your project?",
+    "Write a short description explaining the what, why and how of your project.",
     "Would you like a table of contents?",
-    "Add a screenshot file",
+    "What are the steps required to install your project?",
     "Give some instructions for use.",
+    "Add a screenshot file",
     "List your collaborators and sources of code to credit them.",
     "Which license are you using?",
+    "List the special features of your project.",
+    "Give instructions for how to contribute to your project.",
+    "Paste code snippets of tests for your project.",
+    "Include some frequently asked questions and answers for your readers using links to other references."
 ];
 //destructure questions array so they can be easily inserted and used
-const [qTitle, qDescription, qSteps, qContents, qScreenshot, qInstructions, qCredits, qLicense] = questions;
+const [qTitle, qDescription, qContents,  qSteps, qInstructions, qScreenshot,  qCredits, qLicense, qFeatures, qContribute, qTests, qQuestions,] = questions;
 
 const licenseChoices = ["Apache License 2.0", "MIT license", "GNU General Public License v3.0", "Creative Commons Zero v1.0", "Mozilla Public License 2.0"];
 
@@ -41,15 +45,15 @@ let promptUser = () => {
         name: "description",
         },
         {
-        type: "input",
-        message: qSteps,
-        name: "steps",
-        },
-        {
         type: "confirm",
         message: qContents,
         name:"contents",
         default: true,
+        },
+        {
+        type: "input",
+        message: qSteps,
+        name: "steps",
         },
 //Trying to customise table fo contents through looping through the array
         // {
@@ -61,13 +65,13 @@ let promptUser = () => {
         // },
         {
         type: "input",
-        message: qScreenshot,
-        name: "screenshot",
+        message: qInstructions,
+        name: "instructions",
         },
         {
         type: "input",
-        message: qInstructions,
-        name: "instructions",
+        message: qScreenshot,
+        name: "screenshot",
         },
         {
         type: "input",
@@ -81,6 +85,26 @@ let promptUser = () => {
         choices: licenseChoices,
         default: licenseChoices[1],
         },
+        {
+        type: "features",
+        message: qFeatures,
+        name: "features",
+        },
+        {
+        type: "input",
+        message: qContribute,
+        name: "contribute",
+        },
+        {
+        type: "input",
+        message: qTests,
+        name: "tests",
+        },
+        {
+        type: "type",
+        message: qQuestions,
+        name: "questions",        
+        }
     ])
     //add promise writing data to the README file
     .then((data) => {
