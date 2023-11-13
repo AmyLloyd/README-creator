@@ -1,8 +1,7 @@
-# pickle
-
+# jet  
 ## Description
 
-pickle
+jet
 
 ## Table of Contents
 - [Installation](#installation)
@@ -16,28 +15,28 @@ pickle
 
 ## Installation
 
-pickle 
+jet
 
 ## Usage
 
-pickle 
+jet
 
 ## Credits
-pickle
+jet
 
 ## Features
-pickle
+tre
 
 ## Contributing
-pickle  
+tre  
 
 ## Tests  
-pickle
+tre
 
 ## Questions
-pickle
+tre
 
 
-## License [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)  
-Mozilla Public License 2.0 is the license.  
-More information can be found at https://choosealicense.com/licenses/mpl-2.0/
+## License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+mit license is the license.  
+More information can be found at https://choosealicense.com/licenses/mit/
