@@ -16,9 +16,8 @@ function License(name, badge, link) {
 };
 
 License.prototype.renderLicenseSection = function () {
-    return `
-## License ${this.badge}  
-${this.name} is the license.  
+    return `## License ${this.badge}  
+This app is licensed under ${this.name}. 
 More information can be found at ${this.link}`;
 };
 
@@ -122,7 +121,6 @@ let promptUser = () => {
         name: "license",
         choices: licenseChoices,
         default: licenseChoices[1],
-
         },
         {
         type: "features",
@@ -146,26 +144,26 @@ let promptUser = () => {
         }
 
     ])
-    .then((data) => {    
+    .then((data) => {
     const readmeContent = generateMarkdown(data);
     fs.writeFile('myREADME.md', readmeContent, (err) => err ? console.log(err) : console.log('Success generating markdown'));
 
     if (data.license === "MIT license"){
-        const licenseContent = m.renderLicenseSection(data);
-        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        const licenseSection = m.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseSection, (err) => err ? console.log(err) : console.log("Success appending license!")); 
         } else if (data.license === "Apache license 2.0") {
-        const licenseContent = a.renderLicenseSection(data);
-        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        const licenseSection = a.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseSection, (err) => err ? console.log(err) : console.log("Success appending license!")); 
         } else if (data.license === "GNU General Public License v3.0"){
-        const licenseContent = g.renderLicenseSection(data);
-        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        const licenseSection = g.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseSection, (err) => err ? console.log(err) : console.log("Success appending license!")); 
         } else if (data.license === "Mozilla Public License 2.0") {
-        const licenseContent = z.renderLicenseSection(data);
-        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        const licenseSection = z.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseSection, (err) => err ? console.log(err) : console.log("Success appending license!")); 
         } else if (data.license === "Creative Commons Zero v1.0") {
-        const licenseContent = c.renderLicenseSection(data);
-        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!"));
-        }
+        const licenseSection = c.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseSection, (err) => err ? console.log(err) : console.log("Success appending license!"));
+        }  
     })
     .catch((error) => {
         console.log("checking for errors");
@@ -175,13 +173,11 @@ let promptUser = () => {
             console.log("something else went wrong");
             //Something else went wrong
         } 
-     })
+    });
 };
 
 const init = () => {
-  
     promptUser();
-
 };
 
 init();
