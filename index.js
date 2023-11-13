@@ -16,7 +16,10 @@ function License(name, badge, link) {
 };
 
 License.prototype.renderLicenseSection = function () {
-    return `${this.name} is the license`;
+    return `
+## License ${this.badge}  
+${this.name} is the license.  
+More information can be found at ${this.link}`;
 };
 
 
@@ -36,28 +39,55 @@ const a = new License(
     "Apache license 2.0",
 );
 
+const z = new License(
+    "Mozilla Public License 2.0",
+    "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)",
+    "https://choosealicense.com/licenses/mpl-2.0/",
+    "z",
+    "Mozilla Public License 2.0",
+)
+
+const g = new License(
+    "GNU General Public License v3.0",
+    "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)",
+    "https://choosealicense.com/licenses/agpl-3.0/",
+    "g",
+    "GNU General Public License v3.0",
+
+)
+
+const c = new License(
+    "Creative Commons Zero v1.0",
+    "[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)",
+    "https://choosealicense.com/licenses/cc0-1.0/",
+    "c",
+    "Creative Commons Zero v1.0",
+)
 
 //questions array
 const questions = [
     "What is your project title?", 
     "Write a short description explaining the what, why and how of your project.",
-    "Would you like a table of contents?",
-    "What are the steps required to install your project?",
+    "How do you install your project?",
     "Give some instructions for use.",
-    "Add a screenshot file",
     "List your collaborators and sources of code to credit them.",
     "Which license are you using?",
     "List the special features of your project.",
     "Give instructions for how to contribute to your project.",
     "Paste code snippets of tests for your project.",
-    "Include some frequently asked questions and answers for your readers using links to other references."
+    "How can someone contact you to ask questions?"
 ];
 
 //destructure questions array so they can be easily inserted and used
-const [qTitle, qDescription, qContents,  qSteps, qInstructions, qScreenshot,  qCredits, qLicense, qFeatures, qContribute, qTests, qQuestions,] = questions;
+const [qTitle, qDescription,  qSteps, qInstructions,  qCredits, qLicense, qFeatures, qContribute, qTests, qQuestions,] = questions;
 
-const licenseChoices = [{key: "a", value: "Apache license 2.0", name: "Apache license"}, {key: "m", value: "MIT license", value: "MIT license"}];
-// , "GNU General Public License v3.0", "Creative Commons Zero v1.0", "Mozilla Public License 2.0"];
+const licenseChoices = [
+    {key: "a", value: "Apache license 2.0", name: "Apache license"}, 
+    {key: "m", value: "MIT license", name: "MIT license"}, 
+    {key: "g", value: "GNU General Public License v3.0", name: "GNU General Public License v3.0"},
+    {key: "c", value: "Creative Commons Zero v1.0", name: "Creative Commons Zero v1.0"},
+    {key: "z", value: "Mozilla Public License 2.0", name: "Mozilla Public License 2.0"},
+];
 
 let promptUser = () => {
   inquirer
@@ -73,33 +103,14 @@ let promptUser = () => {
         name: "description",
         },
         {
-        type: "confirm",
-        message: qContents,
-        name:"contents",
-        default: true,
-        },
-        {
         type: "input",
         message: qSteps,
         name: "steps",
         },
-//Trying to customise table fo contents through looping through the array
-        // {
-        // type: "checkbox",
-        // message: "Which sections would you like to include in the Table of Contents?",
-        // choices: ["Installation", "Usage", "Credits", "License"],
-        // name: "contentsIncludes",
-        // when: (data) => data.contents === true
-        // },
         {
         type: "input",
         message: qInstructions,
         name: "instructions",
-        },
-        {
-        type: "input",
-        message: qScreenshot,
-        name: "screenshot",
         },
         {
         type: "input",
@@ -136,15 +147,27 @@ let promptUser = () => {
         }
 
     ])
-    //add promise writing data to the README file
     .then((data) => {
         const readmeContent = generateMarkdown(data);
         fs.writeFile('myREADME.md', readmeContent, (err) => err ? console.log(err) : console.log('Success'));
-        if (data.license === "MIT license") 
-        {
+
+        if (data.license === "MIT license"){
         const licenseContent = m.renderLicenseSection(data);
         fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        } else if (data.license === "Apache license 2.0") {
+        const licenseContent = a.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        } else if (data.license === "GNU General Public License v3.0"){
+        const licenseContent = g.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        } else if (data.license === "Mozilla Public License 2.0") {
+        const licenseContent = z.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
+        } else if (data.license === "Creative Commons Zero v1.0") {
+        const licenseContent = c.renderLicenseSection(data);
+        fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!"));
         }
+
     })
     .catch((error) => {
         console.log("checking for errors");
@@ -156,19 +179,6 @@ let promptUser = () => {
         } 
      });
 }
-
-// function createFileName(data) {
-//     const fileName = `${data.title}-README.md`
-// }
-
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {
-//     fs.writeFile(fileName, generateMarkdown(), (err) =>
-//     err ? console.log(err) 
-//     : console.log("Success!")
-// )};
-
-// Function call to initialize app
 
 const init = () => {
   
