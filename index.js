@@ -22,7 +22,6 @@ ${this.name} is the license.
 More information can be found at ${this.link}`;
 };
 
-
 const m = new License(
     "mit license",
     "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
@@ -74,8 +73,8 @@ const questions = [
     "Which license are you using?",
     "List the special features of your project.",
     "Give instructions for how to contribute to your project.",
-    "Paste code snippets of tests for your project.",
-    "How can someone contact you to ask questions?"
+    "Include any tests you have developed for users.",
+    "Write your github username and email address so that people can contact with any questions."
 ];
 
 //destructure questions array so they can be easily inserted and used
@@ -147,11 +146,11 @@ let promptUser = () => {
         }
 
     ])
-    .then((data) => {
-        const readmeContent = generateMarkdown(data);
-        fs.writeFile('myREADME.md', readmeContent, (err) => err ? console.log(err) : console.log('Success'));
+    .then((data) => {    
+    const readmeContent = generateMarkdown(data);
+    fs.writeFile('myREADME.md', readmeContent, (err) => err ? console.log(err) : console.log('Success generating markdown'));
 
-        if (data.license === "MIT license"){
+    if (data.license === "MIT license"){
         const licenseContent = m.renderLicenseSection(data);
         fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!")); 
         } else if (data.license === "Apache license 2.0") {
@@ -167,7 +166,6 @@ let promptUser = () => {
         const licenseContent = c.renderLicenseSection(data);
         fs.appendFile('myREADME.md', licenseContent, (err) => err ? console.log(err) : console.log("Success again!"));
         }
-
     })
     .catch((error) => {
         console.log("checking for errors");
@@ -177,8 +175,8 @@ let promptUser = () => {
             console.log("something else went wrong");
             //Something else went wrong
         } 
-     });
-}
+     })
+};
 
 const init = () => {
   
