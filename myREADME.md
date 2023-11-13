@@ -1,41 +1,43 @@
-# justy 
+# pickle
 
 ## Description
 
-k
+pickle
 
 ## Table of Contents
-
-false
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
+- [Features](#features)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 - [License](#license)
 
 ## Installation
 
-jkl
+pickle 
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-jkl
-jkl
+pickle 
 
 ## Credits
-jkl
+pickle
 
 ## Features
-m
+pickle
 
 ## Contributing
-m
+pickle  
 
-##Tests
-jkl
+## Tests  
+pickle
 
-##Frequently Asked Questions
-jkl
+## Questions
+pickle
 
-mit license is the license
+
+## License [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)  
+Mozilla Public License 2.0 is the license.  
+More information can be found at https://choosealicense.com/licenses/mpl-2.0/

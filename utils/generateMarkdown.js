@@ -35,19 +35,20 @@
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    return `# ${data.title} 
+    return `# ${data.title}
 
 ## Description
 
 ${data.description}
 
 ## Table of Contents
-
-${data.contents}
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
+- [Features](#features)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 - [License](#license)
 
 ## Installation
@@ -56,9 +57,7 @@ ${data.steps}
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
 ${data.instructions}
-${data.screenshot}
 
 ## Credits
 ${data.credits}
@@ -67,12 +66,12 @@ ${data.credits}
 ${data.features}
 
 ## Contributing
-${data.contribute}
+${data.contribute}  
 
-##Tests
+## Tests  
 ${data.tests}
 
-##Frequently Asked Questions
+## Questions
 ${data.questions}
 
 `
