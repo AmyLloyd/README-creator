@@ -1,7 +1,7 @@
-# a;sdlfkja;sdlfkja;lsdkfjal;skdjf  
+# Portfolio genius  
 ## Description
 
-a;sdlfkj;asldkfja;sldkfja;lsdkfj;alskdfj;alskdfj
+The app will create a portfolio based on your responses to the prompts. Alleviating effort and time. 
 
 ## Table of Contents
 - [Installation](#installation)
@@ -15,24 +15,27 @@ a;sdlfkj;asldkfja;sldkfja;lsdkfj;alskdfj;alskdfj
 
 ## Installation
 
-a;sdlfkja;sdlkfjas;dlfkj
+Download from the website.
 
 ## Usage
 
-;asdklfj;asldkfja;sdlkfja;sldkfja;sldkfj;alskdfj;laksdjf
+Click on START. Answer the prompts. Click on CREATE.
 
 ## Credits
-a;sldkfja;sdlkfja;sldkfj;asldkjf;asldkjf;laskdfj;alskdjf;laskdjf;laksdjf;askldjf;klsdj
+W3 schools and other github developers.
 
 ## Features
-;alsdkfj;alsdkjf;alskdjf;laksdjf;laksdjf;laskdjf;klasjdf
+Interactive prompting.
 
 ## Contributing
-a;sldkfj;asldkfja;sldkfj;alsdkjfasdkl;jfasdkl;jf;alskdjfl;kasdjfaklsdjf;laksdjfl;kasjdfl;kajsdl;fkja;sdkljf  
+Go to the repo and fork the repo. Then make your changes and push them up. I'll check itout and merge.   
 
 ## Tests  
-a;sdfklja;sldkfj;alskdjf;aklsdjfl;kasdjfl;kasjdf;klasjd;flkjasd;klfj
+Test 1
 
 ## Questions
-as;dlkfja;sdlkfja;sldkfjaskl;djfaskl;djf;askldjf;lkasdjf;laksdjf;lkasdjfl;kasdj;lfkjasdl;kfja;sldkjf;lkasdjf
+AmyLloyd https://github.com/AmyLloyd amylloyd30gmail.com
 
+## License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+This app is licensed under mit license. 
+More information can be found at https://choosealicense.com/licenses/mit/

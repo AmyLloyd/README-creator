@@ -11,6 +11,7 @@ Creating this README creator has allowed me to learn how to use the inquirer pac
 
 ## Usage
 There is a screen recording to show the app in action.
+[![Watch the video]https://watch.screencastify.com/v/OgFrctJZhpazLgTGGCj3](https://watch.screencastify.com/v/OgFrctJZhpazLgTGGCj3)
 
 The code can be found on my github account at https://github.com/AmyLloyd/README-creator 
 
