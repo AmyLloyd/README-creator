@@ -1,7 +1,7 @@
-# jet  
+# Portfolio genius  
 ## Description
 
-jet
+The app will create a portfolio based on your responses to the prompts. Alleviating effort and time. 
 
 ## Table of Contents
 - [Installation](#installation)
@@ -15,28 +15,27 @@ jet
 
 ## Installation
 
-jet
+Download from the website.
 
 ## Usage
 
-jet
+Click on START. Answer the prompts. Click on CREATE.
 
 ## Credits
-jet
+W3 schools and other github developers.
 
 ## Features
-tre
+Interactive prompting.
 
 ## Contributing
-tre  
+Go to the repo and fork the repo. Then make your changes and push them up. I'll check itout and merge.   
 
 ## Tests  
-tre
+Test 1
 
 ## Questions
-tre
-
+AmyLloyd https://github.com/AmyLloyd amylloyd30gmail.com
 
 ## License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-mit license is the license.  
+This app is licensed under mit license. 
 More information can be found at https://choosealicense.com/licenses/mit/
